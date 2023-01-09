@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 6, 2021 at 08:29 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Jan 09, 2023 at 01:57 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +31,7 @@ CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `country_code` varchar(2) NOT NULL DEFAULT '',
   `country_name` varchar(100) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `countries`
@@ -295,10 +294,10 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `picture` varchar(255) NOT NULL,
   `archive` enum('Y','N') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `news`
@@ -324,9 +323,9 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `password_txt` varchar(255) NOT NULL,
   `country` char(2) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `archive` enum('Y','N') NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `users`
@@ -334,9 +333,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `username`, `password`, `password_txt`, `country`, `date`, `archive`) VALUES
 (1, 'adminko', 'adminko', 'admin@admin.hr', 'admin', '$2y$12$.IcsdMIFcL18eVni1lVAaeZ36EncpcbINlHUKJCObHZarykGvhVte', 'admin123', 'HR', '2020-11-18 18:07:53', 'Y'),
-(2, 'test', 'test', 'test@test.hr', 'test123', '$2y$12$.cmTVYKxd/Jbst3icJTzyO9gl0wmwPn8WoAR3BYaZLm/XztXMU4Fm', 'test123', 'BD', '2020-11-03 18:08:11', 'Y'),
-(3, 'Ben ', 'Benkic', 'ben@ben.hr', 'benko', '$2y$12$5ytWZ3hEUNw6L5zgpF/Xfue8E7xt8vBigenLBSysNTqKRcPyqaL2a', 'benko123', 'ML', '2021-01-03 19:42:18', 'Y'),
-(4, 'Lea ', 'MikuliÄ‡', 'lea@leic.com', 'lea123', '$2y$12$1tzD9mVXwxw6tSTnpUM4DObpClaF0fJ0ISHgm6iM7.uOeymuS//OO', 'lea123', 'HR', '2021-01-03 20:57:04', 'Y');
+(6, 'Marko', 'Markic', 'mkarKO@gmail.com', 'MARLPO', '$2y$12$dd.94M7CzoYUSoK/ahEWw.0olZ5Bfwxuf59qkr40nK7dgVFP0XI9y', 'MAJKFSEK1234', 'IR', '2023-01-09 12:03:26', 'Y');
 
 --
 -- Indexes for dumped tables
@@ -359,7 +356,6 @@ ALTER TABLE `news`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
-  
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -381,7 +377,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
